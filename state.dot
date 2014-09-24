@@ -1,0 +1,39 @@
+# use dot -Tpng -ostate.png state.dot
+
+digraph WildWest {
+	compound=true;
+	ranksep=1.25;
+	label="WildWest States"; 
+	labelloc="t"
+
+	subgraph Wife {
+		Wife [label="Wife", shape=box]
+		Wife -> DoHouseWork [label = "Start"]
+		CookStew -> DoHouseWork [label = "Rec StewDone"]
+		CookStew -> BathRoom [label = "Urge"]
+		BathRoom -> CookStew [label = "Return"]
+		BathRoom -> DoHouseWork [label = "Return"]
+		DoHouseWork -> BathRoom [label = "Urge"]
+		DoHouseWork -> CookStew [label = "Rec HoneyImHome"]
+	}
+
+	subgraph Miner {
+		Miner [label="Miner", shape=box]
+		Miner -> Home [label = "Start"]
+		Home -> Mine [label = "TimeToWork"]
+		Home -> Bar [label = "Thirsty"]
+		Bar -> Home [label = "Tired"]
+		Bar -> Mine [label = "BackToWork"]
+		Mine -> Bank [label = "GotGold"]
+		Mine -> Bar [label = "Thirsty"]
+		Mine -> Home [label = "Tired"]
+		Bank -> Mine [label = "BackToWork"]
+	}
+
+	subgraph BarFly {
+		BarFly [label="BarFly", shape=box]
+		BarFly -> QuenchThirst [label = "Start"]
+		QuenchThirst -> FightMiner [label = "Angry"]
+		FightMiner -> QuenchThirst [label = "Thirsty"]
+	}
+}
